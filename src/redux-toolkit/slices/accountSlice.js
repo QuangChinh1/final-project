@@ -7,7 +7,7 @@ export const loginAsync = createAsyncThunk(
     async (credentials) => {
         try {
             const data = await loginApi(credentials);
-
+            console.log(data);
             return data;
         } catch (error) {
             console.log(error);
@@ -15,22 +15,22 @@ export const loginAsync = createAsyncThunk(
     }
 );
 
-// export const registerAsync = createAsyncThunk('auth/register', async (user) => {
-//   const response = await fetch(`${API_URL}/register`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(user),
-//   });
+// export const registerAsync = createAsyncThunk("auth/register", async (user) => {
+//     const response = await fetch(`${API_URL}/register`, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(user),
+//     });
 
-//   const data = await response.json();
+//     const data = await response.json();
 
-//   if (!response.ok) {
-//     throw new Error(data.message || 'Registration failed');
-//   }
+//     if (!response.ok) {
+//         throw new Error(data.message || "Registration failed");
+//     }
 
-//   return data;
+//     return data;
 // });
 
 const accountSlice = createSlice({
@@ -42,6 +42,8 @@ const accountSlice = createSlice({
     },
     reducers: {
         setUser: (state, action) => {
+            localStorage.setItem("access-token", action.payload?.token);
+            state.status = "succeeded";
             state.user = action.payload;
         },
         logout: (state) => {
@@ -50,20 +52,19 @@ const accountSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder
-            .addCase(loginAsync.pending, (state) => {
-                state.status = "loading";
-            })
-            .addCase(loginAsync.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                state.user = action.payload;
-                console.log(action.payload);
-                localStorage.setItem("access-token", action.payload.token);
-            })
-            .addCase(loginAsync.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            });
+        builder.addCase(loginAsync.pending, (state) => {
+            state.status = "loading";
+        });
+        builder.addCase(loginAsync.fulfilled, (state, action) => {
+            state.status = "succeeded";
+            state.user = action.payload;
+            console.log(action.payload);
+            localStorage.setItem("access-token", action.payload.token);
+        });
+        builder.addCase(loginAsync.rejected, (state, action) => {
+            state.status = "failed";
+            state.error = action.error.message;
+        });
         //   .addCase(registerAsync.pending, (state) => {
         //     state.status = 'loading';
         //   })

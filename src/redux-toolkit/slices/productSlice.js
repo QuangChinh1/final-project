@@ -9,9 +9,8 @@ import {
 } from "../../apis/productApi";
 
 const initialFilters = {
-    // searchValue: "",
     page: 1,
-    size: 3,
+    size: 6,
     sortBy: "id",
     sortType: "DESC",
     productTypes: [],
@@ -26,6 +25,7 @@ const initialFilters = {
 export const getProducts = createAsyncThunk(
     "product/getProducts",
     async (data = initialFilters) => {
+        console.log(data);
         const response = await getProductWithFiltersApi(data);
         return response;
     }

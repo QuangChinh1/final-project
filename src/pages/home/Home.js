@@ -24,7 +24,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProducts());
-        dispatch(deleteProduct());
+        // dispatch(createOrder());
     }, []);
 
     return (

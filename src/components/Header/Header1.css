@@ -1,0 +1,50 @@
+.Header1 {
+    padding: 10px 50px;
+    background-color: #f94e30;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+}
+
+.Header1-image {
+    margin: 20px;
+    height: 40px;
+    width: 100px;
+    background-color: aliceblue;
+    margin-right: 50px;
+}
+
+.Header1-input {
+    /* fontsize: 16; */
+    /* color: red; */
+    width: 800px;
+}
+.Header1-1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Header1-1-1 {
+    display: flex;
+}
+
+.Header1-1-1-1 {
+    margin-left: 5px;
+    margin-right: 5px;
+    /* padding: 10px; */
+}
+
+.Header1-1-2 {
+    display: flex;
+}
+
+.Header1-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Header1-2-1 {
+    size: 10cm;
+    margin-left: 50px;
+}

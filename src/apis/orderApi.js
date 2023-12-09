@@ -6,7 +6,7 @@ export const createOrderApi = async (newProduct) => {
         method: "post",
         url: "/order/create",
         data: {
-            accountId: 1,
+            accountId: 30,
             productId: 1,
             quantity: 2,
         },
